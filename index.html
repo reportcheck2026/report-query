@@ -252,26 +252,96 @@ body {
 <script>
 /* ===== 演示数据库（正式上线请替换为后端接口） ===== */
 var reportDB = {
-  "JC202609001": {
-    no: "JC202609001", name: "铝合金建筑型材", model: "6063-T5 / 50系列",
-    company: "XX建设工程有限公司", agency: "江苏省XX质量检测中心",
-    date: "2026-09-01",
-    conclusion: "所检项目符合 GB/T 5237.1-2017 标准要求",
-    pass: true, signer: "张建国"
+  "TRJS20260720789L": {
+    no: "TRJS20260720789L", name: "实验用品提篮", model: "QLW-SYYPTL",
+    company: "江苏奇乐娃实业有限公司", agency: "西安拓然检测技术有限公司",
+    date: "2026-08-10",
+    conclusion: "合格",
+    pass: true, signer: "—"
   },
-  "JC202609002": {
-    no: "JC202609002", name: "SBS改性沥青防水卷材", model: "PY-PE-PE 4.0mm",
-    company: "XX建设集团有限公司", agency: "江苏省XX质量检测中心",
-    date: "2026-09-05",
-    conclusion: "所检项目符合 GB 18242-2008 标准要求",
-    pass: true, signer: "李文华"
+  "TRJS20260720668H": {
+    no: "TRJS20260720668H", name: "打孔器", model: "QLW-DKQ",
+    company: "江苏奇乐娃实业有限公司", agency: "西安拓然检测技术有限公司",
+    date: "2026-08-10",
+    conclusion: "合格",
+    pass: true, signer: "—"
   },
-  "JC202609003": {
-    no: "JC202609003", name: "混凝土试块", model: "C30",
-    company: "XX市政工程有限公司", agency: "淮安市XX建设工程检测有限公司",
-    date: "2026-09-08",
-    conclusion: "抗压强度不满足设计要求，判为不合格",
-    pass: false, signer: "王明远"
+  "TRJS20260720363R": {
+    no: "TRJS20260720363R", name: "沙漏", model: "QLW-SL",
+    company: "江苏奇乐娃实业有限公司", agency: "西安拓然检测技术有限公司",
+    date: "2026-08-10",
+    conclusion: "合格",
+    pass: true, signer: "—"
+  },
+  "TRJS20260720374T": {
+    no: "TRJS20260720374T", name: "物体浮沉条件演示器", model: "QLW-WTFC",
+    company: "江苏奇乐娃实业有限公司", agency: "西安拓然检测技术有限公司",
+    date: "2026-08-10",
+    conclusion: "合格",
+    pass: true, signer: "—"
+  },
+  "TRJS20260720263Y": {
+    no: "TRJS20260720263Y", name: "潜水艇浮沉演示器", model: "QLW-QSTFC",
+    company: "江苏奇乐娃实业有限公司", agency: "西安拓然检测技术有限公司",
+    date: "2026-08-10",
+    conclusion: "合格",
+    pass: true, signer: "—"
+  },
+  "TRJS20260720278U": {
+    no: "TRJS20260720278U", name: "眼球仪", model: "QLW-YQY",
+    company: "江苏奇乐娃实业有限公司", agency: "西安拓然检测技术有限公司",
+    date: "2026-08-10",
+    conclusion: "合格",
+    pass: true, signer: "—"
+  },
+  "TRJS20260720123P": {
+    no: "TRJS20260720123P", name: "感应起电机", model: "QLW-GYQDJ",
+    company: "江苏奇乐娃实业有限公司", agency: "西安拓然检测技术有限公司",
+    date: "2026-08-10",
+    conclusion: "合格",
+    pass: true, signer: "—"
+  },
+  "TRJS20260720134G": {
+    no: "TRJS20260720134G", name: "单摆", model: "QLW-DB",
+    company: "江苏奇乐娃实业有限公司", agency: "西安拓然检测技术有限公司",
+    date: "2026-08-10",
+    conclusion: "合格",
+    pass: true, signer: "—"
+  },
+  "TRJS20260720863K": {
+    no: "TRJS20260720863K", name: "滑动变阻器", model: "QLW-HDBZQ",
+    company: "江苏奇乐娃实业有限公司", agency: "西安拓然检测技术有限公司",
+    date: "2026-08-10",
+    conclusion: "合格",
+    pass: true, signer: "—"
+  },
+  "TRJS20260720921C": {
+    no: "TRJS20260720921C", name: "高压电弧触电示教板", model: "QLW-GYDH",
+    company: "江苏奇乐娃实业有限公司", agency: "西安拓然检测技术有限公司",
+    date: "2026-08-10",
+    conclusion: "合格",
+    pass: true, signer: "—"
+  },
+  "TRJS20260720531M": {
+    no: "TRJS20260720531M", name: "实验凳", model: "QLW-SYD",
+    company: "江苏奇乐娃实业有限公司", agency: "西安拓然检测技术有限公司",
+    date: "2026-08-10",
+    conclusion: "合格",
+    pass: true, signer: "—"
+  },
+  "TRJS20260720523B": {
+    no: "TRJS20260720523B", name: "25mm厚金属树脂高能理化板", model: "/",
+    company: "江苏奇乐娃实业有限公司", agency: "西安拓然检测技术有限公司",
+    date: "2026-08-10",
+    conclusion: "合格",
+    pass: true, signer: "—"
+  },
+  "TRJS20260720600V": {
+    no: "TRJS20260720600V", name: "12.7mm厚双面膜实芯理化板", model: "/",
+    company: "江苏奇乐娃实业有限公司", agency: "西安拓然检测技术有限公司",
+    date: "2026-08-10",
+    conclusion: "合格",
+    pass: true, signer: "—"
   }
 };
 
