@@ -9,132 +9,96 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 :root {
-  --primary: #1d4ed8;
-  --primary-2: #0e7490;
-  --bg: #eef2f8;
-  --card: #ffffff;
-  --line: #e6ebf2;
-  --text: #16203a;
-  --text-2: #5e6a82;
-  --text-3: #98a2b8;
-  --ok: #16a34a;
-  --bad: #dc2626;
-  --radius: 16px;
+  --accent: #1d4ed8;
+  --accent-soft: #eff4ff;
+  --ink: #101828;
+  --ink-2: #475467;
+  --ink-3: #98a2b3;
+  --line: #e4e7ec;
+  --bg: #f4f6f9;
+  --ok: #067647;
+  --ok-bg: #ecfdf3;
+  --bad: #b42318;
+  --bad-bg: #fef3f2;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
-html, body { height: 100%; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
   background: var(--bg);
-  color: var(--text);
+  color: var(--ink);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
   padding-bottom: env(safe-area-inset-bottom);
 }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
 
-.page { max-width: 580px; margin: 0 auto; padding: 0 16px 48px; }
-
-/* ===== 顶部品牌横幅 ===== */
-.hero {
-  margin: 0 -16px 18px;
-  padding: 34px 24px 72px;
-  background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 55%, #0e7490 100%);
-  color: #fff;
-  position: relative;
-  overflow: hidden;
+/* ===== 顶部栏 ===== */
+.topbar {
+  background: #fff;
+  border-bottom: 1px solid var(--line);
 }
-.hero::after {
-  content: "";
-  position: absolute; right: -60px; top: -60px;
-  width: 220px; height: 220px; border-radius: 50%;
-  background: rgba(255,255,255,.08);
+.topbar-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding-top: 16px; padding-bottom: 16px;
 }
-.hero::before {
-  content: "";
-  position: absolute; right: 30px; bottom: -80px;
-  width: 160px; height: 160px; border-radius: 50%;
-  background: rgba(255,255,255,.06);
-}
-.hero-brand { display: flex; align-items: center; gap: 12px; position: relative; z-index: 1; }
-.hero-mark {
-  width: 46px; height: 46px; border-radius: 12px;
-  background: rgba(255,255,255,.18);
-  backdrop-filter: blur(6px);
+.brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.mark {
+  width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
+  background: var(--accent);
   display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
 }
-.hero-mark svg { width: 26px; height: 26px; }
-.hero h1 { font-size: 21px; font-weight: 700; letter-spacing: .5px; }
-.hero .sub { font-size: 13px; opacity: .85; margin-top: 2px; }
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 5px;
-  margin-top: 14px; padding: 4px 12px;
-  background: rgba(255,255,255,.16);
-  border: 1px solid rgba(255,255,255,.25);
-  border-radius: 999px; font-size: 12px; position: relative; z-index: 1;
-}
-.hero-badge svg { width: 13px; height: 13px; }
-
-/* ===== 卡片 ===== */
-.card {
-  background: var(--card);
-  border-radius: var(--radius);
-  box-shadow: 0 4px 18px rgba(23,32,58,.07);
-  padding: 20px;
-  margin-bottom: 16px;
-  position: relative;
-}
-
-/* 把查询卡片叠到横幅上 */
-.search-card { margin-top: -52px; position: relative; z-index: 2; }
+.mark svg { width: 21px; height: 21px; stroke: #fff; }
+h1 { font-size: 18px; font-weight: 700; letter-spacing: .3px; line-height: 1.35; }
+.brand-sub { font-size: 12px; color: var(--ink-3); display: block; }
+.count { font-size: 12px; color: var(--ink-2); white-space: nowrap; }
+.count b { font-family: var(--mono); color: var(--ink); font-weight: 600; }
 
 /* ===== 查询区 ===== */
-.search-label { font-size: 13px; color: var(--text-2); margin-bottom: 8px; font-weight: 500; }
+.search {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px;
+  margin-top: 22px;
+}
+.search label { font-size: 13px; font-weight: 600; color: var(--ink-2); display: block; margin-bottom: 8px; }
 .search-row { display: flex; gap: 10px; }
-.input-wrap {
-  flex: 1; min-width: 0; position: relative;
-  display: flex; align-items: center;
-}
-.input-wrap svg {
-  position: absolute; left: 12px; width: 18px; height: 18px;
-  color: var(--text-3); pointer-events: none;
-}
 #reportNo {
-  width: 100%;
-  padding: 13px 14px 13px 40px;
+  flex: 1; min-width: 0;
+  padding: 13px 14px;
   border: 1.5px solid var(--line);
-  border-radius: 12px;
+  border-radius: 10px;
   font-size: 16px;
-  color: var(--text);
+  font-family: var(--mono);
+  letter-spacing: .4px;
+  color: var(--ink);
+  background: #fff;
   outline: none;
-  background: #f8fafd;
-  transition: border-color .15s, background .15s;
+  transition: border-color .15s, box-shadow .15s;
 }
-#reportNo:focus { border-color: var(--primary); background: #fff; }
+#reportNo::placeholder { font-family: inherit; letter-spacing: 0; color: var(--ink-3); }
+#reportNo:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(29,78,216,.12); }
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  padding: 0 22px;
-  border: none; border-radius: 12px;
-  font-size: 15px; font-weight: 600;
-  cursor: pointer;
-  transition: filter .15s, transform .05s, background .15s;
-  white-space: nowrap;
+  border: none; border-radius: 10px;
+  font-size: 15px; font-weight: 600; font-family: inherit;
+  cursor: pointer; white-space: nowrap;
+  transition: background .15s, border-color .15s, transform .05s;
 }
-.btn:active { transform: scale(.97); }
-.btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--primary-2));
-  color: #fff; box-shadow: 0 4px 12px rgba(29,78,216,.28);
+.btn:active { transform: scale(.98); }
+.btn-primary { background: var(--accent); color: #fff; padding: 0 26px; }
+.btn-primary:hover { background: #1a45c0; }
+.btn-ghost {
+  background: #fff; color: var(--ink-2);
+  border: 1px solid var(--line); padding: 9px 14px; font-size: 14px; font-weight: 500;
 }
-.btn-primary:hover { filter: brightness(1.08); }
-.btn-scan {
-  width: 100%; margin-top: 12px;
-  background: #f0f5ff; color: var(--primary);
-  border: 1.5px solid #c7d7fe;
-  padding: 12px 0;
-}
-.btn-scan:hover { background: #e3edff; }
-.btn-scan svg { width: 18px; height: 18px; }
+.btn-ghost:hover { border-color: #cfd6e3; color: var(--ink); }
+.btn-ghost svg { width: 16px; height: 16px; }
+.search-foot { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.hint { font-size: 12px; color: var(--ink-3); line-height: 1.5; }
 
 /* ===== 摄像头 ===== */
-.scan-wrap { display: none; margin-top: 14px; }
+.scan-wrap { display: none; margin-top: 16px; }
 .scan-wrap.open { display: block; }
 .video-box { position: relative; overflow: hidden; border-radius: 12px; background: #0b1220; }
 #camera { width: 100%; display: block; }
@@ -150,135 +114,190 @@ body {
   animation: scanmove 1.8s ease-in-out infinite; pointer-events: none;
 }
 @keyframes scanmove { 0%,100% { top: 18%; } 50% { top: 80%; } }
-.scan-status { font-size: 14px; color: #cfd8ea; text-align: center; padding: 10px 0 2px; }
-.btn-stop { display: block; margin: 10px auto 0; background: #334155; color: #fff; padding: 9px 24px; }
+.scan-status { font-size: 13px; color: var(--ink-2); text-align: center; padding: 10px 0 2px; }
+.btn-stop { display: block; margin: 10px auto 0; background: #1f2a3d; color: #fff; padding: 9px 22px; font-size: 14px; }
+.btn-stop:hover { background: #16202f; }
 
-/* ===== 提示与错误 ===== */
-.msg { display: none; border-radius: 12px; padding: 13px 15px; font-size: 14px; margin-bottom: 16px; align-items: center; gap: 8px; }
+/* ===== 状态提示 ===== */
+.msg {
+  display: none; align-items: center; gap: 8px;
+  margin-top: 16px; padding: 12px 14px;
+  border-radius: 10px; font-size: 14px;
+}
 .msg.show { display: flex; }
-.msg svg { flex-shrink: 0; width: 18px; height: 18px; }
-.msg-error { background: #fef2f2; color: var(--bad); border: 1px solid #fecaca; }
-.msg-empty { background: #fffbeb; color: var(--warn); border: 1px solid #fde68a; }
-.msg-loading { background: #eff6ff; color: var(--primary); border: 1px solid #bfdbfe; }
-
-/* ===== 使用说明 ===== */
-.steps { display: flex; gap: 10px; }
-.step { flex: 1; text-align: center; padding: 12px 6px; border-radius: 12px; background: #f6f8fc; }
-.step-num {
-  width: 26px; height: 26px; margin: 0 auto 6px;
-  background: linear-gradient(135deg, var(--primary), var(--primary-2));
-  color: #fff; border-radius: 50%;
-  font-size: 13px; font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-}
-.step-txt { font-size: 12px; color: var(--text-2); line-height: 1.4; }
-
-/* ===== 报告结果 ===== */
-.report-verified {
-  display: flex; align-items: center; gap: 10px;
-  padding: 12px 14px; border-radius: 12px;
-  background: linear-gradient(135deg, #dcfce7, #d1fae5);
-  margin-bottom: 14px;
-}
-.report-verified.bad { background: linear-gradient(135deg, #fee2e2, #fecaca); }
-.verified-icon {
-  width: 34px; height: 34px; border-radius: 50%;
-  background: var(--ok); color: #fff;
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-}
-.report-verified.bad .verified-icon { background: var(--bad); }
-.verified-icon svg { width: 19px; height: 19px; }
-.verified-text .t { font-size: 15px; font-weight: 700; color: #14532d; }
-.report-verified.bad .verified-text .t { color: #7f1d1d; }
-.verified-text .s { font-size: 12px; color: #166534; }
-.report-verified.bad .verified-text .s { color: #991b1b; }
-
-.report-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-.report-head h2 { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
-.report-head h2 svg { width: 20px; height: 20px; color: var(--primary); }
-.report-body { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
-.row { display: flex; align-items: flex-start; border-bottom: 1px solid var(--line); }
-.row:last-child { border-bottom: none; }
-.row .k { width: 92px; flex-shrink: 0; padding: 12px 12px; font-size: 13px; color: var(--text-2); background: #f8fafc; }
-.row .v { flex: 1; min-width: 0; padding: 12px; font-size: 14px; font-weight: 500; word-break: break-all; }
-.row .v.mono { font-family: "SF Mono", Consolas, Menlo, monospace; letter-spacing: .3px; }
-
-/* ===== 查询二维码 ===== */
-.qr-area { margin-top: 18px; padding-top: 18px; border-top: 1px dashed var(--line); text-align: center; }
-.qr-tip { font-size: 13px; color: var(--text-2); margin-bottom: 10px; }
-#qrCanvas { width: 168px; height: 168px; border: 1px solid var(--line); border-radius: 12px; padding: 6px; background: #fff; }
-.btn-qr { margin-top: 12px; width: auto; padding: 9px 18px; font-size: 14px; background: #f0f5ff; color: var(--primary); border: 1.5px solid #c7d7fe; }
-.btn-qr:hover { background: #e3edff; }
-
-/* ===== 机构/防伪信息 ===== */
-.info-card .info-row { display: flex; gap: 10px; padding: 8px 0; font-size: 13px; color: var(--text-2); align-items: flex-start; }
-.info-card .info-row svg { width: 16px; height: 16px; color: var(--primary); flex-shrink: 0; margin-top: 2px; }
-.info-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
-.info-card h3 svg { width: 16px; height: 16px; color: var(--primary); }
-
-/* ===== 页脚 ===== */
-.footer { text-align: center; padding: 20px 8px 0; }
-.footer .org { font-size: 13px; color: var(--text-2); font-weight: 500; }
-.footer .copy { font-size: 11px; color: var(--text-3); margin-top: 4px; }
-
-/* ===== 加载动画 ===== */
+.msg svg { width: 17px; height: 17px; flex-shrink: 0; }
+.msg-error { background: var(--bad-bg); color: var(--bad); border: 1px solid #fecdca; }
+.msg-empty { background: #fffaeb; color: #b54708; border: 1px solid #fedf89; }
+.msg-loading { background: var(--accent-soft); color: var(--accent); border: 1px solid #d1e0ff; }
 .spinner {
   width: 15px; height: 15px; flex-shrink: 0;
-  border: 2px solid #bfdbfe; border-top-color: var(--primary);
+  border: 2px solid #c7d7fe; border-top-color: var(--accent);
   border-radius: 50%; animation: spin .7s linear infinite;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
+/* ===== 报告结果 ===== */
+.doc {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  margin-top: 16px;
+  overflow: hidden;
+}
+.doc[hidden] { display: none; }
+.doc-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+  background: #fbfcfd;
+}
+.doc-title { font-size: 13px; font-weight: 600; color: var(--ink-2); letter-spacing: .4px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px; border-radius: 999px;
+  font-size: 13px; font-weight: 600;
+  background: var(--ok-bg); color: var(--ok);
+  border: 1px solid #abefc6;
+}
+.badge.bad { background: var(--bad-bg); color: var(--bad); border-color: #fecdca; }
+.badge svg { width: 15px; height: 15px; }
+
+.doc-no {
+  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+  padding: 20px 20px 16px;
+}
+.doc-no .k { font-size: 12px; color: var(--ink-3); }
+.doc-no .v {
+  font-family: var(--mono); font-size: 22px; font-weight: 700;
+  letter-spacing: .8px; color: var(--ink); word-break: break-all;
+}
+.btn-copy {
+  margin-left: 2px; align-self: center;
+  background: none; border: 1px solid var(--line);
+  color: var(--ink-3); font-size: 12px; padding: 4px 10px;
+  border-radius: 7px; cursor: pointer; transition: color .15s, border-color .15s;
+}
+.btn-copy:hover { color: var(--accent); border-color: #c7d7fe; }
+
+.doc-body {
+  display: grid; grid-template-columns: 1fr 200px;
+  gap: 0 28px;
+  padding: 4px 20px 20px;
+}
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; }
+.field.wide { grid-column: span 2; }
+.field dt { font-size: 12px; color: var(--ink-3); margin-bottom: 3px; }
+.field dd {
+  font-size: 15px; font-weight: 500; color: var(--ink);
+  line-height: 1.55; word-break: break-word;
+}
+.field dd.pre { white-space: pre-line; }
+.field dd.mono { font-family: var(--mono); letter-spacing: .3px; }
+
+.qr {
+  border-left: 1px solid var(--line);
+  padding-left: 28px;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+}
+#qrCanvas {
+  width: 160px; height: 160px;
+  border: 1px solid var(--line); border-radius: 10px; padding: 5px; background: #fff;
+  image-rendering: pixelated;
+}
+.qr p { font-size: 12px; color: var(--ink-2); text-align: center; margin-top: 10px; line-height: 1.5; }
+.qr p span { color: var(--ink-3); }
+.qr .link {
+  margin-top: 8px; background: none; border: none;
+  color: var(--accent); font-size: 12px; cursor: pointer; font-family: inherit;
+  text-decoration: underline; text-underline-offset: 3px;
+  padding: 4px;
+}
+.qr .link:hover { color: #1a45c0; }
+
+/* ===== 防伪说明 ===== */
+.notes {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px;
+  margin-top: 16px;
+}
+.notes h2 { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+.notes ol { padding-left: 18px; }
+.notes li { font-size: 13px; color: var(--ink-2); line-height: 1.75; margin-bottom: 6px; }
+.notes li:last-child { margin-bottom: 0; }
+
+/* ===== 页脚 ===== */
+.footer { text-align: center; padding: 26px 20px 36px; }
+.footer .copy { font-size: 12px; color: var(--ink-3); }
+
+/* ===== 响应式 ===== */
+@media (max-width: 680px) {
+  .wrap { padding: 0 14px; }
+  .count { display: none; }
+  h1 { font-size: 17px; }
+  .search { padding: 16px; margin-top: 16px; }
+  .doc-body { grid-template-columns: 1fr; padding: 4px 16px 16px; }
+  .qr {
+    border-left: none; border-top: 1px dashed var(--line);
+    padding-left: 0; padding-top: 18px; margin-top: 20px;
+  }
+  .fields { grid-template-columns: 1fr; gap: 14px; }
+  .field.wide { grid-column: span 1; }
+  .doc-head, .doc-no { padding-left: 16px; padding-right: 16px; }
+  .doc-no .v { font-size: 19px; }
+  .btn-primary { padding: 0 20px; }
+  .notes { padding: 16px; }
+}
 @media (max-width: 380px) {
   .search-row { flex-wrap: wrap; }
-  .btn-query { width: 100%; padding: 13px 0; }
-  .steps { flex-direction: column; }
+  .btn-primary { width: 100%; height: 44px; }
+  .btn-copy { margin-left: 0; }
 }
 </style>
 </head>
 <body>
 
-<!-- ===== 顶部横幅 ===== -->
-<div class="hero">
-  <div class="hero-brand">
-    <div class="hero-mark">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M9 12l2 2 4-4"/><path d="M21 12c0 5-4 9-9 9s-9-4-9-9 4-9 9-9c2.5 0 4.8 1 6.4 2.7"/>
-      </svg>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand">
+      <span class="mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 12l2 2 4-4"/><path d="M21 12c0 5-4 9-9 9s-9-4-9-9 4-9 9-9c2.5 0 4.8 1 6.4 2.7"/>
+        </svg>
+      </span>
+      <div>
+        <h1>检测报告查询系统</h1>
+        <span class="brand-sub">报告真伪在线核验</span>
+      </div>
     </div>
-    <div>
-      <h1>检测报告查询系统</h1>
-      <div class="sub">报告真伪在线核验 · 扫码即查</div>
-    </div>
+    <div class="count" id="dbCount"></div>
   </div>
-  <div class="hero-badge">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-    权威核验 · 数据加密传输
-  </div>
-</div>
+</header>
 
-<div class="page">
+<main class="wrap">
 
   <!-- ===== 查询区 ===== -->
-  <section class="card search-card">
-    <div class="search-label">请输入报告编号进行查询</div>
+  <section class="search">
+    <label for="reportNo">报告编号</label>
     <div class="search-row">
-      <div class="input-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
-        <input id="reportNo" type="text" inputmode="text" autocomplete="off"
-               placeholder="如 TRJS20260720789L" maxlength="40"
-               onkeydown="if(event.key==='Enter')searchReport()">
-      </div>
-      <button class="btn btn-primary btn-query" onclick="searchReport()">查 询</button>
+      <input id="reportNo" type="text" inputmode="text" autocomplete="off" spellcheck="false"
+             placeholder="如 GYJ20261101KJ32" maxlength="40"
+             onkeydown="if(event.key==='Enter')searchReport()">
+      <button class="btn btn-primary" onclick="searchReport()">查 询</button>
     </div>
-    <button class="btn btn-scan" onclick="toggleScan()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/>
-        <path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
-        <line x1="7" y1="12" x2="17" y2="12"/><line x1="12" y1="7" x2="12" y2="17"/>
-      </svg>
-      扫描报告二维码
-    </button>
+    <div class="search-foot">
+      <button class="btn btn-ghost" onclick="toggleScan()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/>
+          <path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
+          <rect x="7" y="7" width="4" height="4"/><rect x="13" y="13" width="4" height="4"/>
+        </svg>
+        扫码查询
+      </button>
+      <span class="hint">扫描报告二维码后自动填入编号</span>
+    </div>
 
     <div class="scan-wrap" id="scanWrap">
       <div class="video-box">
@@ -286,96 +305,60 @@ body {
         <div class="scan-frame"></div>
         <div class="scan-line"></div>
       </div>
-      <div class="scan-status">正在识别二维码，请将报告二维码置于框内</div>
+      <div class="scan-status">请将报告上的二维码置于框内</div>
       <button class="btn btn-stop" onclick="stopScan()">关闭扫码</button>
     </div>
   </section>
 
-  <!-- ===== 状态消息 ===== -->
-  <div class="msg" id="msgBox"></div>
-
-  <!-- ===== 使用说明 ===== -->
-  <section class="card">
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-txt">输入报告编号<br>或扫描二维码</div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-txt">系统自动核验<br>报告真伪信息</div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-txt">查看检测结果<br>确认报告有效性</div>
-      </div>
-    </div>
-  </section>
+  <div class="msg" id="msgBox" role="status"></div>
 
   <!-- ===== 报告结果 ===== -->
-  <section class="card" id="reportCard" style="display:none">
-    <div class="report-verified" id="verifiedBox">
-      <div class="verified-icon">
-        <svg id="verifiedIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-      </div>
-      <div class="verified-text">
-        <div class="t" id="verifiedTitle">核验通过</div>
-        <div class="s" id="verifiedSub">该报告信息与检测机构记录一致</div>
-      </div>
+  <section class="doc" id="reportCard" hidden>
+    <div class="doc-head">
+      <div class="doc-title">检测报告信息</div>
+      <span class="badge" id="statusBadge"></span>
     </div>
 
-    <div class="report-head">
-      <h2>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
-          <line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/>
-        </svg>
-        检测报告信息
-      </h2>
+    <div class="doc-no">
+      <span class="k">报告编号</span>
+      <span class="v" id="fNo"></span>
+      <button class="btn-copy" id="copyBtn" onclick="copyNo()">复制</button>
     </div>
 
-    <div class="report-body">
-      <div class="row"><div class="k">报告编号</div><div class="v mono" id="fNo"></div></div>
-      <div class="row"><div class="k">产品名称</div><div class="v" id="fName"></div></div>
-      <div class="row"><div class="k">规格型号</div><div class="v" id="fModel"></div></div>
-      <div class="row"><div class="k">委托单位</div><div class="v" id="fCompany"></div></div>
-      <div class="row"><div class="k">检测机构</div><div class="v" id="fAgency"></div></div>
-      <div class="row"><div class="k">检测日期</div><div class="v" id="fDate"></div></div>
-      <div class="row"><div class="k">检测结论</div><div class="v" id="fConclusion"></div></div>
-      <div class="row"><div class="k">查询时间</div><div class="v" id="fTime"></div></div>
-    </div>
+    <div class="doc-body">
+      <dl class="fields">
+        <div class="field wide"><dt>产品名称</dt><dd id="fName"></dd></div>
+        <div class="field wide"><dt>规格型号</dt><dd id="fModel" class="pre"></dd></div>
+        <div class="field wide"><dt>委托单位</dt><dd id="fCompany"></dd></div>
+        <div class="field wide"><dt>检测机构</dt><dd id="fAgency"></dd></div>
+        <div class="field"><dt>检测日期</dt><dd id="fDate"></dd></div>
+        <div class="field"><dt>检测结论</dt><dd id="fConclusion"></dd></div>
+        <div class="field wide"><dt>查询时间</dt><dd id="fTime" class="mono"></dd></div>
+      </dl>
 
-    <div class="qr-area" id="qrArea" style="display:none">
-      <div class="qr-tip">扫码可再次查询本报告</div>
-      <canvas id="qrCanvas"></canvas>
-      <button class="btn btn-scan btn-qr" onclick="makeQR()">重新生成查询二维码</button>
+      <aside class="qr">
+        <canvas id="qrCanvas"></canvas>
+        <p>扫码查看本报告<br><span>信息与纸质报告一致</span></p>
+        <button class="link" onclick="makeQR()">重新生成二维码</button>
+      </aside>
     </div>
   </section>
 
-  <!-- ===== 机构与防伪说明 ===== -->
-  <section class="card info-card">
-    <h3>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      防伪查询说明
-    </h3>
-    <div class="info-row">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-      <span>本系统由检测机构官方提供，查询结果与原始报告记录一致。</span>
-    </div>
-    <div class="info-row">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
-      <span>如查询不到该编号，或显示信息与纸质报告不符，请警惕伪造，联系检测机构核实。</span>
-    </div>
-    <div class="info-row">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      <span>如有疑问，请联系检测机构客服核实报告真伪。</span>
-    </div>
+  <!-- ===== 防伪说明 ===== -->
+  <section class="notes">
+    <h2>防伪查询说明</h2>
+    <ol>
+      <li>本系统的查询结果与检测机构出具的原始报告记录一致。</li>
+      <li>若查询不到该编号，或页面信息与纸质报告不符，请警惕伪造，并及时联系检测机构核实。</li>
+      <li>扫描报告上的二维码可直接跳转至对应报告的查询结果页，请核对网址后使用。</li>
+      <li>本系统仅提供报告真伪核验，不作为产品质量或其他用途的证明依据。</li>
+    </ol>
   </section>
 
-  <div class="footer">
+  <footer class="footer">
     <div class="copy">检测报告查询系统 · 仅供报告真伪核验使用</div>
-  </div>
-</div>
+  </footer>
+</main>
 
 <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
@@ -559,7 +542,7 @@ var reportDB = {
     pass: true
   },
   "GYJ20261101KJ32": {
-    no: "GYJ20261101KJ32", name: "室内显示系统LED大屏", model: "BTQ020ECO / BTQ015ECO",
+    no: "GYJ20261101KJ32", name: "室内显示系统LED大屏", model: "BTQ020ECO\nBTQ015ECO",
     company: "京东方晶芯科技有限公司", agency: "国研检验检测（苏州）有限公司",
     date: "2026-11-01",
     conclusion: "合格",
@@ -568,16 +551,24 @@ var reportDB = {
 };
 
 function $(id) { return document.getElementById(id); }
+
+(function initCount() {
+  var n = Object.keys(reportDB).length;
+  $("dbCount").innerHTML = "已收录 <b>" + n + "</b> 份报告";
+})();
+
 function showMsg(type, text) {
   var box = $("msgBox");
   box.className = "msg show msg-" + type;
-  box.innerHTML = type === "loading"
-    ? '<span class="spinner"></span><span>' + text + "</span>"
-    : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'
-      + (type === "error"
-        ? '<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>'
-        : '<polyline points="20 6 9 17 4 12"/>')
-      + "</svg><span>" + text + "</span>";
+  if (type === "loading") {
+    box.innerHTML = '<span class="spinner"></span><span>' + text + "</span>";
+    return;
+  }
+  var icon = type === "error"
+    ? '<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>'
+    : '<polyline points="20 6 9 17 4 12"/>';
+  box.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+    + 'stroke-linecap="round" stroke-linejoin="round">' + icon + "</svg><span>" + text + "</span>";
 }
 function hideMsg() { $("msgBox").className = "msg"; }
 
@@ -591,54 +582,74 @@ function searchReport() {
     if (reportDB.hasOwnProperty(no)) {
       var d = reportDB[no];
       $("fNo").textContent = d.no;
-      $("fName").textContent = d.name;
+      $("fName").textContent = d.name || "-";
       $("fModel").textContent = d.model || "-";
-      $("fCompany").textContent = d.company;
-      $("fAgency").textContent = d.agency;
-      $("fDate").textContent = d.date;
-      $("fConclusion").textContent = d.conclusion;
+      $("fCompany").textContent = d.company || "-";
+      $("fAgency").textContent = d.agency || "-";
+      $("fDate").textContent = d.date || "-";
+      $("fConclusion").textContent = d.conclusion || "-";
       $("fTime").textContent = new Date().toLocaleString("zh-CN", { hour12: false });
 
-      var vb = $("verifiedBox");
+      var badge = $("statusBadge");
       if (d.pass) {
-        vb.className = "report-verified";
-        $("verifiedTitle").textContent = "核验通过 · 检测合格";
-        $("verifiedSub").textContent = "该报告信息与检测机构记录一致";
-        $("verifiedIcon").innerHTML = '<polyline points="20 6 9 17 4 12"/>';
+        badge.className = "badge";
+        badge.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" '
+          + 'stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>核验通过 · 检测合格';
       } else {
-        vb.className = "report-verified bad";
-        $("verifiedTitle").textContent = "核验通过 · 检测不合格";
-        $("verifiedSub").textContent = "该报告真实存在，但检测结论为不合格";
-        $("verifiedIcon").innerHTML = '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>';
+        badge.className = "badge bad";
+        badge.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" '
+          + 'stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>核验通过 · 检测不合格';
       }
-      $("reportCard").style.display = "block";
-      $("qrArea").style.display = "block";
+
+      $("reportCard").hidden = false;
+      $("copyBtn").textContent = "复制";
       hideMsg();
       makeQR(no);
       $("reportCard").scrollIntoView({ behavior: "smooth", block: "nearest" });
     } else {
-      hideMsg();
-      $("reportCard").style.display = "none";
-      showMsg("error", "未查询到该编号对应的报告，请核对后重试");
+      $("reportCard").hidden = true;
+      showMsg("error", "未查询到编号为 " + no + " 的报告，请核对编号后重试");
     }
   }, 400);
 }
 
 function makeQR(no) {
   var reportNo = no || $("fNo").textContent;
-  if (!reportNo) return;
+  if (!reportNo || typeof QRCode === "undefined") return;
   var base = location.href.split("?")[0].split("#")[0];
   var url = base + "?no=" + encodeURIComponent(reportNo);
-  if (typeof QRCode === "undefined") return;
   try {
-    QRCode.toCanvas($("qrCanvas"), url, {
-      width: 168, margin: 1, errorCorrectionLevel: "M"
-    });
+    QRCode.toCanvas($("qrCanvas"), url, { width: 160, margin: 1, errorCorrectionLevel: "M" });
   } catch (e) {}
+}
+
+function copyNo() {
+  var text = $("fNo").textContent;
+  var done = function () {
+    var b = $("copyBtn");
+    b.textContent = "已复制";
+    setTimeout(function () { b.textContent = "复制"; }, 1500);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text, done); });
+  } else {
+    fallbackCopy(text, done);
+  }
+}
+function fallbackCopy(text, done) {
+  var ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); done(); } catch (e) {}
+  document.body.removeChild(ta);
 }
 
 var stream = null;
 var scanning = false;
+var rafId = null;
 
 function toggleScan() {
   var wrap = $("scanWrap");
@@ -658,7 +669,7 @@ function toggleScan() {
     video.setAttribute("playsinline", "true");
     video.play();
     scanning = true;
-    requestAnimationFrame(tick);
+    tick();
   }).catch(function () {
     showMsg("error", "无法打开摄像头，请检查权限后重试，或手动输入编号");
   });
@@ -667,27 +678,32 @@ function toggleScan() {
 function tick() {
   if (!scanning) return;
   var video = $("camera");
-  if (video.readyState >= video.HAVE_ENOUGH_DATA) {
+  if (video.readyState >= video.HAVE_ENOUGH_DATA && video.videoWidth) {
     var canvas = document.createElement("canvas");
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
-    canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
     try {
-      var code = jsQR(canvas.getImageData(0, 0, canvas.width, canvas.height).data,
+      var code = jsQR(ctx.getImageData(0, 0, canvas.width, canvas.height).data,
                       canvas.width, canvas.height);
       if (code && code.data) {
+        var raw = code.data.trim();
+        var m = raw.match(/[?&]no=([^&]+)/);
+        var no = m ? decodeURIComponent(m[1]) : raw;
         stopScan();
-        $("reportNo").value = code.data.trim();
+        $("reportNo").value = no;
         searchReport();
         return;
       }
     } catch (e) {}
   }
-  requestAnimationFrame(tick);
+  rafId = requestAnimationFrame(tick);
 }
 
 function stopScan() {
   scanning = false;
+  if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
   if (stream) { stream.getTracks().forEach(function (t) { t.stop(); }); stream = null; }
   $("scanWrap").classList.remove("open");
 }
@@ -697,10 +713,7 @@ function stopScan() {
   if (!m || !m[1]) return;
   var no = decodeURIComponent(m[1]).trim().toUpperCase();
   $("reportNo").value = no;
-  setTimeout(function () {
-    searchReport();
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }, 250);
+  setTimeout(searchReport, 250);
 })();
 </script>
 </body>
